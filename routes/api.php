@@ -18,16 +18,31 @@ use App\Http\Controllers\api\v1\LoginController;
 
 
 
-Route::group(['namespace'=>'api'], function () {// Api控制器文件放在Api目录下
+Route::group(['namespace' => 'api'], function () { // Api控制器文件放在Api目录下
 
-    Route::group(['prefix'=>'v1','namespace'=>'V1'],function () {// v1版本
-        Route::middleware('auth:api')->get('/user', function (Request $request) {
-            return $request->user();
+    Route::group(['prefix' => 'v1', 'namespace' => 'v1'], function () { // v1版本
+
+
+
+        Route::group(['prefix' => 'user'], function () { // v2版本
+
+            Route::middleware('auth:sanctum')->get('/', function (Request $request) {
+                return $request->user();
+            });
+
+            Route::middleware('auth:sanctum')->get('athenticated', function () {
+                return true;
+            });
+
+            //登入
+            Route::post('login', [LoginController::class, 'login']);
+
+            //登出
+            Route::post('logout', [LoginController::class, 'logout']);
         });
-        Route::post('/user/login', [LoginController::class,'login']);
     });
 
-    Route::group(['prefix'=>'v2', 'namespace'=>'V2'], function () {// v2版本
+    Route::group(['prefix' => 'v2', 'namespace' => 'V2'], function () { // v2版本
 
     });
 });

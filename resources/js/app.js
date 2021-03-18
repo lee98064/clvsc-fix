@@ -1,6 +1,7 @@
 import Vue from "vue";
 import router from "./router";
 import App from "./App.vue";
+import {apiUserAthenticated} from './api'
 // import axios from "axios";
 require('./bootstrap');
 // import axios from "axios";
@@ -40,5 +41,17 @@ require('./bootstrap');
 
 new Vue({
     router,
-    render: h => h(App)
-  }).$mount("#app");
+    render: h => h(App),
+    created() {
+        if (localStorage.getItem("name") || localStorage.getItem("admin")){
+            apiUserAthenticated({})
+            .then(res=> {
+                console.log('Login in!')
+            })
+            .catch(err=> {
+                localStorage.removeItem('admin');
+                localStorage.removeItem('name');
+            })
+        }
+    }
+}).$mount("#app");

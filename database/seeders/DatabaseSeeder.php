@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'account' => 'admin',
             'email' => 'admin@clvsc.tyc.edu.tw',
             'password' => Hash::make('password'),
+            'is_admin' => true
         ]);
     }
 }

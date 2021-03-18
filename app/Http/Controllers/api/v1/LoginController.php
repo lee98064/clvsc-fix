@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api\v1;
 
 use Illuminate\Http\Request;
 use Auth;
-use Dotenv\Exception\ValidationException;
+use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
@@ -17,14 +17,17 @@ class LoginController extends Controller
             'password' => ['required']
         ]);
 
-        if (Auth::attempt($request->only('account','password'))){
+        if (Auth::attempt($request->only('account', 'password'))) {
             return response()->json(Auth::user(), 200);
         };
 
         throw ValidationException::withMessages([
             'account' => ['帳號或密碼錯誤！']
         ]);
-
     }
 
+    public function logout()
+    {
+        Auth::logout();
+    }
 }
