@@ -1912,30 +1912,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     signedIn: function signedIn() {
@@ -2123,7 +2099,7 @@ var apiUserLogin = function apiUserLogin(data) {
 var apiUserLogout = function apiUserLogout(data) {
   return userRequest.post('/logout', data);
 };
-var apiUserAthenticated = function apiUserAthenticated(data) {
+var apiUserAthenticated = function apiUserAthenticated() {
   return userRequest.get('/athenticated');
 };
 
@@ -2224,6 +2200,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.withCredentials = true;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -2270,7 +2247,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE
 
 
 var auth = function auth(to, from, next) {
-  (0,_api__WEBPACK_IMPORTED_MODULE_7__.apiUserAthenticated)({}).then(function (res) {
+  (0,_api__WEBPACK_IMPORTED_MODULE_7__.apiUserAthenticated)().then(function (res) {
     next();
   })["catch"](function (err) {
     return next({
@@ -6779,7 +6756,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\n    background-color: #f3f6fb;\n    font-family: \"Noto Sans TC\", sans-serif;\n}\n.bg {\n    background-color: #1172dc;\n    height: 30vh;\n    position: absolute;\n    top: 0;\n    right: 0;\n    left: 0;\n    z-index: -1;\n}\n.left-nav {\n    text-align: center;\n    position: fixed;\n    top: 0;\n    left: 0;\n    display: flex;\n    flex-direction: column;\n    width: 17rem;\n    height: 100vh;\n    background: #ffffff;\n}\n.right {\n    margin-left: 17rem;\n    position: relative;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\n  background-color: #f3f6fb;\n  font-family: \"Noto Sans TC\", sans-serif;\n}\n.bg {\n  background-color: #1172dc;\n  height: 30vh;\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 0;\n  z-index: -1;\n}\n.left-nav {\n  text-align: center;\n  position: fixed;\n  top: 0;\n  left: 0;\n  display: flex;\n  flex-direction: column;\n  width: 17rem;\n  height: 100vh;\n  background: #ffffff;\n}\n.right {\n  margin-left: 17rem;\n  position: relative;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38655,27 +38632,69 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(1),
                   _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
                   _vm.signedIn()
-                    ? _c(
-                        "li",
-                        {
-                          staticClass: "nav-item",
-                          class: { active: _vm.$route.path === "/logout" }
-                        },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: "/logout" }
-                            },
-                            [_vm._v("登出")]
-                          )
-                        ],
-                        1
-                      )
+                    ? _c("li", { staticClass: "nav-item dropdown" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link dropdown-toggle",
+                            attrs: {
+                              href: "#",
+                              id: "navbarDropdown",
+                              role: "button",
+                              "data-toggle": "dropdown",
+                              "aria-haspopup": "true",
+                              "aria-expanded": "false"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.signedIn()) +
+                                "\n            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "dropdown-menu",
+                            attrs: { "aria-labelledby": "navbarDropdown" }
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { href: "#" }
+                              },
+                              [_vm._v("Action")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { href: "#" }
+                              },
+                              [_vm._v("Another action")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "dropdown-divider" }),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { to: "/logout" }
+                              },
+                              [_vm._v("登出")]
+                            )
+                          ],
+                          1
+                        )
+                      ])
                     : _c(
                         "li",
                         {
@@ -38737,55 +38756,6 @@ var staticRenderFns = [
       _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
         _vm._v("Link")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link dropdown-toggle",
-          attrs: {
-            href: "#",
-            id: "navbarDropdown",
-            role: "button",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false"
-          }
-        },
-        [
-          _vm._v(
-            "\n                            Dropdown\n                        "
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "dropdown-menu",
-          attrs: { "aria-labelledby": "navbarDropdown" }
-        },
-        [
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Action")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Another action")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "dropdown-divider" }),
-          _vm._v(" "),
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Something else here")
-          ])
-        ]
-      )
     ])
   }
 ]
@@ -38856,88 +38826,101 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "login-form" }, [
-    _c("div", { staticClass: "form-card" }, [
-      _c("h1", { staticClass: "text-center" }, [_vm._v("登入")]),
-      _vm._v(" "),
-      _c("div", [
-        _vm.errors.account
-          ? _c("h5", { staticClass: "text-center text-danger" }, [
-              _vm._v("\n        " + _vm._s(_vm.errors.account[0]) + "\n      ")
-            ])
-          : _c("h5", { staticClass: "text-center text-muted" }, [
-              _vm._v("\n        請輸入學校提供的帳號密碼登入！\n      ")
-            ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "account" } }, [_vm._v("帳號：")]),
+  return _c(
+    "form",
+    {
+      staticClass: "login-form",
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-card" }, [
+        _c("h1", { staticClass: "text-center" }, [_vm._v("登入")]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.account,
-              expression: "form.account"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", id: "account" },
-          domProps: { value: _vm.form.account },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "account", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "password" } }, [_vm._v("密碼：")]),
+        _c("div", [
+          _vm.errors.account
+            ? _c("h5", { staticClass: "text-center text-danger" }, [
+                _vm._v(
+                  "\n        " + _vm._s(_vm.errors.account[0]) + "\n      "
+                )
+              ])
+            : _c("h5", { staticClass: "text-center text-muted" }, [
+                _vm._v("\n        請輸入學校提供的帳號密碼登入！\n      ")
+              ])
+        ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.password,
-              expression: "form.password"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "password", id: "password" },
-          domProps: { value: _vm.form.password },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "account" } }, [_vm._v("帳號：")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.account,
+                expression: "form.account"
               }
-              _vm.$set(_vm.form, "password", $event.target.value)
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "account" },
+            domProps: { value: _vm.form.account },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "account", $event.target.value)
+              }
             }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "d-block btn btn-primary btn-block",
-          on: {
-            click: function($event) {
-              return _vm.loginUser()
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "password" } }, [_vm._v("密碼：")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.password,
+                expression: "form.password"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "password", id: "password" },
+            domProps: { value: _vm.form.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "password", $event.target.value)
+              }
             }
-          }
-        },
-        [_vm._v("\n      登入\n    ")]
-      )
-    ])
-  ])
+          })
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "d-block btn btn-primary btn-block",
+            on: {
+              click: function($event) {
+                return _vm.loginUser()
+              }
+            }
+          },
+          [_vm._v("\n      登入\n    ")]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {

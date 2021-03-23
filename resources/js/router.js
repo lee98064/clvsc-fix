@@ -11,7 +11,7 @@ import Notfound from './components/404'
 import {apiUserAthenticated, apiUserLogout} from './api'
 
 const auth = (to, from, next) => {
-    apiUserAthenticated({})
+    apiUserAthenticated()
     .then(res=> {
         next()
     })

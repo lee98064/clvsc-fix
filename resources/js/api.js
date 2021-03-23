@@ -8,4 +8,4 @@ const userRequest = axios.create({
 
 export const apiUserLogin = data => userRequest.post('/login', data);
 export const apiUserLogout = data => userRequest.post('/logout', data);
-export const apiUserAthenticated = data => userRequest.get('/athenticated');
+export const apiUserAthenticated = () => userRequest.get('/athenticated');

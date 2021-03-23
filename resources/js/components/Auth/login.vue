@@ -1,5 +1,5 @@
 <template>
-  <div class="login-form">
+  <form class="login-form" @submit.prevent="">
     <div class="form-card">
       <h1 class="text-center">登入</h1>
       <div>
@@ -40,7 +40,7 @@
         登入
       </button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
